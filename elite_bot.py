@@ -11,7 +11,11 @@ from typing import Dict, List, Optional, Union
 from bs4 import BeautifulSoup
 from cryptography.fernet import Fernet
 from playwright.async_api import async_playwright
-
+# تأكد من تثبيت متصفح chromium
+async def ensure_browser_installed():
+    import os
+    if not os.path.exists("/usr/bin/chromium"):
+        os.system("playwright install chromium")
 # 1. نظام التسجيل الاحترافي
 class EliteLogger:
     def __init__(self):
