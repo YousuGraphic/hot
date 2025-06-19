@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: tiktok-bot
+    runtime: docker
+    envVars:
+      - key: TELEGRAM_TOKEN
+        value: 7523866222:AAG1ymuXiIfcFgeAexDFD1C21LUzyZH3HN0
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /usr/bin/chromium
+      - key: TZ
+        value: Asia/Riyadh
