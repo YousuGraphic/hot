@@ -1,28 +1,23 @@
 #!/bin/bash
 
-# تثبيت المتطلبات الأساسية للنظام
+# تحديث النظام الأساسي
 sudo apt-get update
-sudo apt-get install -y \
-    libnss3 \
-    libnspr4 \
-    libatk1.0-0 \
-    libatk-bridge2.0-0 \
-    libcups2 \
-    libdrm2 \
-    libxkbcommon0 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxfixes3 \
-    libxrandr2 \
-    libgbm1 \
-    libasound2 \
-    libatspi2.0-0 \
-    libxshmfence1
+sudo apt-get install -y python3.10 python3.10-dev python3.10-venv g++
 
-# تثبيت متطلبات بايثون
-pip install --upgrade pip
+# إنشاء بيئة افتراضية جديدة
+python3.10 -m venv venv
+source venv/bin/activate
+
+# تثبيت الأدوات الأساسية
+pip install --upgrade pip setuptools wheel
+
+# تثبيت greenlet بشكل منفصل أولاً
+pip install --force-reinstall --no-cache-dir greenlet==3.0.3
+
+# تثبيت المتطلبات
 pip install -r requirements.txt
 
-# تثبيت متصفح Chromium
+# تثبيت playwright والمتصفح
+python -m pip install playwright==1.42.0
 python -m playwright install chromium
 python -m playwright install-deps
